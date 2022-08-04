@@ -49,5 +49,15 @@ yarn test
 3. Click on `movies.cy.js`
 4. Congrats you are good to go with testing
 
+
+To build the project run
+```
+yarn build
+```
+or
+```
+npm run build
+```
+
 Thanks again!! Happy coding!
 
