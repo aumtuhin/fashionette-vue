@@ -1,6 +1,6 @@
 <template>
   <header className="header">
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit" class="search-form">
       <div className="form-control">
         <SearchInput placeholder="Name" name="search" v-model="searchQuery" />
         <Button name="Search" />
@@ -8,10 +8,12 @@
     </form>
   </header>
   <div class="movies-section">
-    <div v-if="!isLoading">Total: {{ movies.length }}</div>
-    <div class="movies-container">
+    <div class="total-result" v-if="!isLoading">Total: {{ movies.length }}</div>
+    <div v-if="isLoading" class="loading">Loading...</div>
+    <div v-if="!isLoading" class="movies-container">
       <MovieCard v-for="(movie, index) in movies" :key="index" :movie="movie" />
     </div>
+    <div v-if="movies.length === 0">Oops!! Please try with different name</div>
   </div>
 </template>
 

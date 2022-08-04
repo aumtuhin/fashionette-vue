@@ -1,6 +1,6 @@
 <template>
   <input
-    className="search-input"
+    class="search-input"
     type="text"
     :placeholder="placeholder"
     :name="name"
