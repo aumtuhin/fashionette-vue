@@ -44,33 +44,31 @@ export default {
   },
 
   async mounted() {
-    try {
-      this.isLoading = true;
-      const response = await axios.get(`${rootUrl}/shows`);
-      if (response.status === 200) {
-        this.movies = response.data.slice(0, 12);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-    this.isLoading = false;
+    const url = `${rootUrl}/shows`;
+    const movies = await this.fetchData(url);
+    this.movies = movies;
   },
 
   methods: {
-    async handleSubmit() {
+    async fetchData(url) {
+      let data;
       try {
         this.isLoading = true;
-        const response = await axios.get(
-          `${rootUrl}/search/shows?q=${searchQuery.value}`
-        );
+        const response = await axios.get(url);
         if (response.status === 200) {
-          const data = response.data.slice(0, 12);
-          this.movies = data.map((item) => item.show);
+          data = response.data.slice(0, 12);
         }
       } catch (e) {
         console.error(e);
       }
       this.isLoading = false;
+      return data;
+    },
+    async handleSubmit() {
+      const url = `${rootUrl}/search/shows?q=${searchQuery.value}`;
+      const data = await this.fetchData(url);
+      const movies = data.map((item) => item.show);
+      this.movies = movies;
     },
   },
 };
