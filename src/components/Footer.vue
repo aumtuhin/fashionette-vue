@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">Made with <HeartIcon className="icon" /> by Tuhin</div>
+  <div class="footer">Made with &hearts; by Tuhin</div>
 </template>
 
 <script>
