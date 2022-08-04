@@ -5,7 +5,7 @@
 <script>
 export default {
   props: {
-    movie: Object,
+    name: String,
   },
   name: "Button",
   data() {

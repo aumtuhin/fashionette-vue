@@ -1,4 +1,12 @@
 <template>
+  <header className="header">
+    <form @submit.prevent="handleSubmit">
+      <div className="form-control">
+        <SearchInput placeholder="Name" name="search" v-model="searchQuery" />
+        <Button name="Search" />
+      </div>
+    </form>
+  </header>
   <div class="movies-section">
     <div v-if="!isLoading">Total: {{ movies.length }}</div>
     <div class="movies-container">
@@ -11,31 +19,74 @@
 import axios from "axios";
 import { rootUrl } from "../constants/const";
 import MovieCard from "./MovieCard.vue";
+import Button from "./Button.vue";
+import SearchInput from "./SearchInput.vue";
+
+import { ref } from "vue";
+const searchQuery = ref("");
 
 export default {
   name: "Movies",
   components: {
     MovieCard,
+    Button,
+    SearchInput,
   },
+
   data() {
     return {
       isLoading: false,
       movies: [],
+      searchQuery,
     };
   },
 
   async mounted() {
-    this.isLoading = true;
-    const response = await axios.get(`${rootUrl}/shows`);
-    if (response.status === 200) {
-      this.movies = response.data.slice(0, 12);
+    try {
+      this.isLoading = true;
+      const response = await axios.get(`${rootUrl}/shows`);
+      if (response.status === 200) {
+        this.movies = response.data.slice(0, 12);
+      }
+    } catch (e) {
+      console.error(e);
     }
     this.isLoading = false;
+  },
+
+  methods: {
+    async handleSubmit() {
+      try {
+        this.isLoading = true;
+        const response = await axios.get(
+          `${rootUrl}/search/shows?q=${searchQuery}`
+        );
+        if (response.status === 200) {
+          const data = response.data.slice(0, 12);
+          this.movies = data.map((item) => item.show);
+        }
+      } catch (e) {
+        console.error(e);
+      }
+      this.isLoading = false;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.header {
+  padding: 2rem 2rem;
+  img {
+    height: 3rem;
+    padding: 1rem;
+  }
+  .form-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 .movies-container {
   padding: 0 2% 2% 2%;
   display: flex;
