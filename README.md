@@ -8,7 +8,7 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 # Getting Started with Fashionette
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with Vite
 ## Installation and Configuration
 Please make sure you have these following software installed in your system:
 * Node.js
@@ -26,7 +26,7 @@ or
 ```
 yarn 
 ```
-Then
+Then to run the project run
 ```
 yarn dev
 ```
@@ -35,7 +35,7 @@ or
 npm run dev
 ```
 
-Now visit 
+Now open your browser and visit 
 ```
 http://localhost:5173/
 ```
@@ -49,4 +49,5 @@ yarn test
 3. Click on `movies.cy.js`
 4. Congrats you are good to go with testing
 
+Thanks again!! Happy coding!
 
