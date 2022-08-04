@@ -59,7 +59,7 @@ export default {
       try {
         this.isLoading = true;
         const response = await axios.get(
-          `${rootUrl}/search/shows?q=${searchQuery}`
+          `${rootUrl}/search/shows?q=${searchQuery.value}`
         );
         if (response.status === 200) {
           const data = response.data.slice(0, 12);
