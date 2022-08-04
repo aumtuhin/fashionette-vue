@@ -34,9 +34,15 @@
         <p v-if="movie.summary !== null" class="summary">
           {{ movie.summary.replace(regex, "").slice(0, 100) }} ...
         </p>
-        <a :href="movie.officialSite" target="_blank" rel="noreferrer">
-          <span class="icon">&and;</span>
+        <a
+          v-if="movie.officialSite !== null"
+          :href="movie.officialSite"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Official Site
         </a>
+        <p v-else :href="movie.officialSite">No Official Site</p>
       </div>
     </div>
   </div>
@@ -137,23 +143,7 @@ export default {
   }
 
   a {
-    text-decoration: none;
-  }
-
-  .icon {
-    font-size: 2rem;
-    color: grey;
-    border: 1px solid #d8dcfd;
-    background-color: #d8dcfd;
-    border-radius: px;
-    cursor: pointer;
-    outline: none;
-
-    &:hover {
-      border: 1px solid gray;
-      background-color: transparent;
-      color: grey;
-    }
+    color: #555657;
   }
 }
 
