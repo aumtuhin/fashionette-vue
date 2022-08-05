@@ -27,7 +27,7 @@
       </p>
     </div>
     <div v-if="movie.language !== null">Language: {{ movie.language }}</div>
-    <div v-if="movie.premiered !== null">Premiered: {movie.premiered}</div>
+    <div v-if="movie.premiered !== null">Premiered: {{movie.premiered}}</div>
     <p v-if="movie.summary !== null" class="summary">
       {{ movie.summary.replace(regex, "").slice(0, 100) }} ...
     </p>
